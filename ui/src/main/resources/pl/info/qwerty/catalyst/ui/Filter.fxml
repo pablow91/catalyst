@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="obligacjefx.filters.FilterController">
+    <SplitPane dividerPositions="0.4331103678929766" focusTraversable="true" prefHeight="400.0" prefWidth="600.0"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <VBox id="VBox" alignment="CENTER" prefHeight="398.0" spacing="5.0" AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Aktywne filtry" VBox.vgrow="ALWAYS"/>
+                        <TreeView fx:id="filterTree" prefHeight="372.0" prefWidth="256.0" showRoot="false"
+                                  VBox.vgrow="ALWAYS">
+                            <tooltip>
+                                <Tooltip
+                                    text="Dodanie filtru do danego pola odbywa się&#10;poprzez kliknięcie prawym przyciskiem myszy&#10;na dane pole i wybranie odpowiedniego filtru."/>
+                            </tooltip>
+                        </TreeView>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <TitledPane animated="false" collapsible="false" expanded="true" prefHeight="398.0"
+                            prefWidth="336.0" text="Filtr" visible="true" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                        <AnchorPane id="Content" fx:id="filterDetailBox" minHeight="0.0" minWidth="0.0"
+                                    prefHeight="180.0" prefWidth="200.0"/>
+                    </content>
+                </TitledPane>
+            </children>
+        </AnchorPane>
+    </SplitPane>
+</AnchorPane>

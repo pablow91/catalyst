@@ -1,0 +1,16 @@
+market:
+  url: https://gpwcatalyst.pl/
+  addInfo: o-instrumentach-instrumenty-notowane
+  items:
+    - id: 1
+      url: notowania-obligacji-obligacje-korporacyjne
+      name: Obligacje koporacyjne
+    - id: 2
+      url: notowania-obligacji-obligacje-spoldzielcze
+      name: Obligacje spółdzielcze
+    - id: 3
+      url: notowania-obligacji-obligacje-komunalne
+      name: Obligacje skarbowe
+    - id: 4
+      url: notowania-obligacji-obligacje-skarbowe
+      name: Obligacje skarbowe
