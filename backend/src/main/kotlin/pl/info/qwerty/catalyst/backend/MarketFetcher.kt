@@ -12,7 +12,7 @@ import pl.info.qwerty.catalyst.model.Triple1
 import java.io.ByteArrayInputStream
 
 interface MarketFetcher {
-    fun getBond(market: MarketC): Set<Bond>
+    fun getBonds(market: MarketC): Set<Bond>
 }
 
 @Service
@@ -20,7 +20,7 @@ class MarketFetcherImpl(
         val marketConfiguration: MarketConfiguration
 ) : MarketFetcher {
 
-    override fun getBond(market: MarketC): Set<Bond> {
+    override fun getBonds(market: MarketC): Set<Bond> {
         val data = RestTemplate().getForObject<String>(marketConfiguration.url + market.url) ?: throw Exception()
         return parseMarketInfo(data, market.name)
     }

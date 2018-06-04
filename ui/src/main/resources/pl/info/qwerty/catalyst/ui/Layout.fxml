@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?scenebuilder-background-color 0x00ccb4ff?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="584.0" prefWidth="779.0" xmlns:fx="http://javafx.com/fxml" fx:controller="obligacjefx.MenuController">
-    <StackPane id="StackPane" prefHeight="584.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <VBox id="VBox" fx:id="mainPanel" alignment="CENTER">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.info.qwerty.catalyst.ui.MainController">
+    <StackPane prefHeight="584.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fx:id="mainPanel" alignment="CENTER">
             <children>
                 <ToolBar>
                     <items>
@@ -19,11 +29,10 @@
                                     <graphic>
                                         <Label contentDisplay="RIGHT" text="Minimalna opłata">
                                             <graphic>
-                                                <TextField fx:id="minimalProvisionField" prefWidth="200.0"/>
+                                                <TextField fx:id="minimalProvisionField" prefWidth="200.0" />
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip
-                                                    text="Minimalna prowizja jaką biuro maklerskie&#10;pobierze za przeprowadzenie trakzakcji&#10;zakupu bądź sprzedarzy."/>
+                                                <Tooltip text="Minimalna prowizja jaką biuro maklerskie&#10;pobierze za przeprowadzenie trakzakcji&#10;zakupu bądź sprzedarzy." />
                                             </tooltip>
                                         </Label>
                                     </graphic>
@@ -32,672 +41,50 @@
                                     <graphic>
                                         <Label contentDisplay="RIGHT" text="Procent">
                                             <graphic>
-                                                <TextField fx:id="percentageProvisionField" prefWidth="200.0"/>
+                                                <TextField fx:id="percentageProvisionField" prefWidth="200.0" />
                                             </graphic>
                                             <tooltip>
-                                                <Tooltip
-                                                    text="Procentowa prowizja jaka zostanie dodana&#10;do wartości tranzakcji przez biuro maklerskie."/>
+                                                <Tooltip text="Procentowa prowizja jaka zostanie dodana&#10;do wartości tranzakcji przez biuro maklerskie." />
                                             </tooltip>
                                         </Label>
                                     </graphic>
                                 </MenuItem>
                             </items>
                         </MenuButton>
-                        <Button fx:id="refreshMarkets" mnemonicParsing="false"
-                                text="Odświerz dane">
+                        <Button fx:id="refreshMarkets" mnemonicParsing="false" text="Odświerz dane">
                             <tooltip>
-                                <Tooltip
-                                    text="Ponownie pobranie danych z wybranego&#10;źródła danych (UWAGA! Uaktualnienie&#10;w pewnych warunkach nie koniecznie&#10;spowoduje pobranie aktualnych danych)."/>
+                                <Tooltip text="Ponownie pobranie danych z wybranego&#10;źródła danych (UWAGA! Uaktualnienie&#10;w pewnych warunkach nie koniecznie&#10;spowoduje pobranie aktualnych danych)." />
                             </tooltip>
                         </Button>
                         <ToggleButton fx:id="filterEditorButton" mnemonicParsing="false" text="Edytor filtrów">
                             <tooltip>
-                                <Tooltip
-                                    text="Okno edytora filtrów (nałożone filtry&#10;będą aktywne również po zamknięciu&#10;edytora)."/>
+                                <Tooltip text="Okno edytora filtrów (nałożone filtry&#10;będą aktywne również po zamknięciu&#10;edytora)." />
                             </tooltip>
                         </ToggleButton>
                     </items>
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </ToolBar>
-                <SplitPane dividerPositions="0.24967824967824967" focusTraversable="true" prefHeight="584.0"
-                           prefWidth="779.0" VBox.vgrow="ALWAYS">
+                <SplitPane dividerPositions="0.24967824967824967" focusTraversable="true" prefHeight="584.0" prefWidth="779.0" VBox.vgrow="ALWAYS">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                             <children>
-                                <ListView fx:id="bondList" prefHeight="582.0" prefWidth="191.0"
-                                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                                <ListView fx:id="bondList" prefHeight="582.0" prefWidth="191.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                             </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" >
                             <children>
-                                <Accordion fx:id="bondDetails" disable="true"
-                                           prefHeight="551.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0"
-                                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                           AnchorPane.topAnchor="0.0">
-                                    <panes>
-                                        <TitledPane fx:id="x1" expanded="false" prefHeight="551.0" prefWidth="385.0"
-                                                    text="Ogólne">
-                                            <content>
-                                                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0"
-                                                            prefHeight="180.0" prefWidth="200.0">
-                                                    <children>
-                                                        <GridPane hgap="10.0" prefHeight="525.0" prefWidth="576.0"
-                                                                  AnchorPane.bottomAnchor="0.0"
-                                                                  AnchorPane.leftAnchor="0.0"
-                                                                  AnchorPane.rightAnchor="0.0"
-                                                                  AnchorPane.topAnchor="0.0">
-                                                            <children>
-                                                                <Label text="Emitent" GridPane.columnIndex="0"
-                                                                       GridPane.halignment="RIGHT"
-                                                                       GridPane.rowIndex="0">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Nazwa emitenta, który wypuścił daną obligacje."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label text="Segment" GridPane.columnIndex="0"
-                                                                       GridPane.halignment="RIGHT"
-                                                                       GridPane.rowIndex="2">
-                                                                    <tooltip>
-                                                                        <Tooltip text="Empty Tooltip"/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label text="Data emisji" GridPane.columnIndex="0"
-                                                                       GridPane.halignment="RIGHT"
-                                                                       GridPane.rowIndex="3">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Data pierwszego notowania na giełdzie."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="emitentLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="0"/>
-                                                                <Label fx:id="segmentLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="2"/>
-                                                                <Label fx:id="dataEmisjiLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="3"/>
-                                                                <Label text="Data wykupu" GridPane.columnIndex="0"
-                                                                       GridPane.halignment="RIGHT"
-                                                                       GridPane.rowIndex="4">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Data wykupu obligacji przez emitenta."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label text="Jednostka tranzakcyjna"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.halignment="RIGHT"
-                                                                       GridPane.rowIndex="5"/>
-                                                                <Label fx:id="dataWykupuLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="4"/>
-                                                                <Label fx:id="jednostkaTransakcyjnaLabel"
-                                                                       text="Label" GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="5"/>
-                                                                <Label fx:id="wartośćNominalnaLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="6"/>
-                                                                <Label text="Wartość nominalna"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.halignment="RIGHT"
-                                                                       GridPane.rowIndex="6">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Wartość nominalna pojedynczej obligacji."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label text="Wartość emisji"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="7">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Wartość wszystkich obligacji w danej emisji."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label text="Rodzaj oprocentowania"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="8"/>
-                                                                <Label fx:id="rodzajOprocentowaniaLabel"
-                                                                       text="Label" GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="8"/>
-                                                                <Label fx:id="wartośćEmisjiLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="7"/>
-                                                                <Label text="Oprocentowanie bieżące"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="9">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Oprocentowanie w aktualnym okresie rozliczeniowym."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="oprocentowanieBieżąceLabel"
-                                                                       text="Label" GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="9"/>
-                                                                <Label text="Skumulowane odsetki"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="10">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Wartość aktualnego kuponu (ta wartość jest doliczana do ceny jaką płacimy za dany papier)."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="skumulowaneOdsetkiLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="10"/>
-                                                                <Label text="Okres odsetkowy"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="11">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Okres pomiędzy wypłatami kuponów"/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <ListView fx:id="datyZapadania"
-                                                                          focusTraversable="false"
-                                                                          orientation="HORIZONTAL"
-                                                                          prefHeight="200.0" prefWidth="200.0"
-                                                                          GridPane.columnIndex="0"
-                                                                          GridPane.columnSpan="2147483647"
-                                                                          GridPane.rowIndex="13">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Daty w których nabywamy prawo do danego kuponu."/>
-                                                                    </tooltip>
-                                                                </ListView>
-                                                                <ListView id="datyZapadania" fx:id="datyWypłaty"
-                                                                          focusTraversable="false"
-                                                                          orientation="HORIZONTAL"
-                                                                          prefHeight="200.0" prefWidth="200.0"
-                                                                          GridPane.columnIndex="0"
-                                                                          GridPane.columnSpan="2147483647"
-                                                                          GridPane.rowIndex="14">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Daty w których emitent wypłaca kupon dla którego nabyliśmy prawo."/>
-                                                                    </tooltip>
-                                                                </ListView>
-                                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0"
-                                                                      prefWidth="200.0" GridPane.columnIndex="1"
-                                                                      GridPane.hgrow="ALWAYS" GridPane.rowIndex="11"
-                                                                      GridPane.valignment="TOP"
-                                                                      GridPane.vgrow="ALWAYS">
-                                                                    <children>
-                                                                        <Slider id="okresOdsetkowyLabel"
-                                                                                fx:id="okresOdsetkowySlider"
-                                                                                max="12.0" min="1.0"
-                                                                                showTickLabels="true"
-                                                                                HBox.hgrow="ALWAYS"/>
-                                                                        <Label fx:id="okresOdsetkowyLabel"
-                                                                               text="Label"/>
-                                                                        <Label fx:id="okresOdsetkowyAutoLabel"
-                                                                               text="Label"/>
-                                                                    </children>
-                                                                </HBox>
-                                                                <Label text="Wielkość kuponu"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="12">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Wartość kuponu przy uwzględnieniu oprocentowania i długości okresu odestkowego."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="wielkośćKuponuLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="12"/>
-                                                                <Label text="Market" GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="1"/>
-                                                                <Label fx:id="marketNameLabel"
-                                                                       text="marketNameLabel"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="1"/>
-                                                            </children>
-                                                            <columnConstraints>
-                                                                <ColumnConstraints halignment="RIGHT"
-                                                                                   hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
-                                                                <ColumnConstraints halignment="LEFT"
-                                                                                   hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
-                                                            </columnConstraints>
-                                                            <rowConstraints>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                            </rowConstraints>
-                                                        </GridPane>
-                                                    </children>
-                                                </AnchorPane>
-                                            </content>
-                                        </TitledPane>
-                                        <TitledPane fx:id="x2" expanded="false" text="Ostatnia sesja">
-                                            <content>
-                                                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0"
-                                                            prefHeight="180.0" prefWidth="200.0">
-                                                    <children>
-                                                        <GridPane hgap="10.0" prefHeight="481.0" prefWidth="576.0"
-                                                                  AnchorPane.bottomAnchor="0.0"
-                                                                  AnchorPane.leftAnchor="0.0"
-                                                                  AnchorPane.rightAnchor="0.0"
-                                                                  AnchorPane.topAnchor="0.0">
-                                                            <children>
-                                                                <Label text="Ostatnia tranzakcja"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="0">
-                                                                    <tooltip>
-                                                                        <Tooltip text="Data ostatniej tranzakcji."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="lastTransactionLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="0"/>
-                                                                <Label text="Wolumen ostatniej tranzakcji"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="1"/>
-                                                                <Label fx:id="lastTransactionVolumeLabel"
-                                                                       text="Label" GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="1"/>
-                                                                <Label text="Liczba zleceń kupna"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="2">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Ile aktualnie jest zleceń od osób które chcą kupić obligacje."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="numberOfOrdersBuyLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="2"/>
-                                                                <Label text="Wolumen kupna" GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="3">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Ile aktualnie jest obligacji do sprzedania"/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="buyVolumeLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="3"/>
-                                                                <Label text="Limit kupna" GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="4">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Najwyższa cena za jaką aktualnie możemy sprzedać obligacje."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="buyPriceLimitLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="4"/>
-                                                                <Label text="Liczba zleceń sprzedaży"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="5">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Ile aktualnie jest zleceń od osób które chcą sprzedać obligacje."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="numberOfOrdersSellLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="5"/>
-                                                                <Label text="Wolumen sprzedaży"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="6">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Ile aktualnie jest obligacji, które możemy kupić."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="sellVolumeLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="6"/>
-                                                                <Label text="Limit sprzedaży"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="7">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Najniższa cena za jaką możemy kupić obligacje."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="sellPriceLimitLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="7"/>
-                                                                <Label text="Dzisiejszy wolumen"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="8">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Ilość obligacji, które dzisiaj zmieniły właściciela."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="dayVolumeLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="8"/>
-                                                                <Label text="Dzisiejsze obroty"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="9">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Sumaryczna wartość dzisiejszych tranzakcji."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="dayValueLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="9"/>
-                                                                <Label text="Kurs odniesienia"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="10">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Kurs ostatniego zamnięcia w którym nastąpiła tranzakcja na tym papierze."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="referencePriceLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="10"/>
-                                                                <Label text="Kurs otwarcia" GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="11"/>
-                                                                <Label fx:id="openingPriceLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="11"/>
-                                                                <Label text="Kurs minimalny"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="12"/>
-                                                                <Label fx:id="minimalPriceLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="12"/>
-                                                                <Label id="maximalPriceLabel" fx:id="changeLabel"
-                                                                       text="Label" GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="15"/>
-                                                                <Label text="Zmiana" GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="15"/>
-                                                                <Label text="Kurs ostatni" GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="14">
-                                                                    <tooltip>
-                                                                        <Tooltip text="Kurs ostatniej tranzakcji."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label text="Kurs maksymalny"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="13">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Maksymalny kurs dzisiejszej sesji."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="lastPriceLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="14"/>
-                                                                <Label fx:id="maximalPriceLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="13"/>
-                                                            </children>
-                                                            <columnConstraints>
-                                                                <ColumnConstraints halignment="RIGHT"
-                                                                                   hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
-                                                            </columnConstraints>
-                                                            <rowConstraints>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                            </rowConstraints>
-                                                        </GridPane>
-                                                    </children>
-                                                </AnchorPane>
-                                            </content>
-                                        </TitledPane>
-                                        <TitledPane fx:id="x3" expanded="false" text="Wskaźniki">
-                                            <content>
-                                                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0"
-                                                            prefHeight="180.0" prefWidth="200.0">
-                                                    <children>
-                                                        <GridPane gridLinesVisible="false" hgap="10.0"
-                                                                  prefHeight="481.0" prefWidth="576.0"
-                                                                  AnchorPane.bottomAnchor="0.0"
-                                                                  AnchorPane.leftAnchor="0.0"
-                                                                  AnchorPane.rightAnchor="0.0"
-                                                                  AnchorPane.topAnchor="0.0">
-                                                            <children>
-                                                                <Label fx:id="dirtyPriceLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="1"/>
-                                                                <Label text="Budna cena" GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="1">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Cena jaką zapłacimy za pojedynczą obligacje po uwzględnieniu skumulowanych odsetek w bieżącym okresie rozliczeniowym."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label text="Ilość okresów do końca"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="2">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Ile razy nabędziemy prawa do odsetek przed wykupem obligacji przez emitenta."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="remainingPeriodsLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="2"/>
-                                                                <Label text="Liczba obligacji do zakupienia"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="3">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Liczba obligacji jaką planujemy kupić (UWAGA! Zakup takiej ilości obligacji może być niemożliwy oraz cena pojedycznych papierów może być różna)"/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <HBox id="HBox" alignment="CENTER_LEFT"
-                                                                      fillHeight="true" spacing="0.0"
-                                                                      GridPane.columnIndex="1"
-                                                                      GridPane.rowIndex="3">
-                                                                    <children>
-                                                                        <Slider fx:id="numberOfBoundsSlider"
-                                                                                min="1.0" orientation="HORIZONTAL"
-                                                                                prefWidth="242.0"
-                                                                                showTickLabels="true"
-                                                                                showTickMarks="false"
-                                                                                snapToTicks="false"
-                                                                                HBox.hgrow="ALWAYS"/>
-                                                                        <Label fx:id="numberOfBoundsLabel"
-                                                                               text="Label"/>
-                                                                    </children>
-                                                                </HBox>
-                                                                <Label text="Cena za obligacje"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="4">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Cena za wybraną wyżej ilość obligacji jaką zapłacimy przy zakupie."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="priceForBondsLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="4"/>
-                                                                <Label text="Cena za obligacje z prowizją"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="5">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Powyższa cena powiękoszna o prowizje biura maklerskiego."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="priceForBondsProvisionLabel"
-                                                                       text="Label" GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="5"/>
-                                                                <Label text="Wartosć końcowa obligacji"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="6">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Kwota będąca sumą wartości nominalnej zakupionych obligacji oraz kuponów jakie przysługują do dnia wykupu obligacji."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="finalPriceLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="6"/>
-                                                                <Label text="Podatek od zysków kapitałowych"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="7">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Podatek jaki zostanie naliczony od kuponów"/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="finalTaxLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="7"/>
-                                                                <Label text="Realna wartosć końcowa"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="8">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Realna końcowa wartość obligacji po uwzglęnieniu wszystkich kosztów."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label fx:id="finalPriceTaxLabel" text="Label"
-                                                                       GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="8"/>
-                                                                <Label text="Realne oprocentowanie"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="9">
-                                                                    <tooltip>
-                                                                        <Tooltip
-                                                                            text="Realne oprocentowanie po uwzględnieniu wszystkich kosztów i podatków."/>
-                                                                    </tooltip>
-                                                                </Label>
-                                                                <Label id="final" fx:id="finalPercentLabel"
-                                                                       text="Label" GridPane.columnIndex="1"
-                                                                       GridPane.rowIndex="9"/>
-                                                                <Label text="Cena początkowa"
-                                                                       GridPane.columnIndex="0"
-                                                                       GridPane.rowIndex="0"/>
-                                                                <HBox id="HBox" alignment="CENTER" spacing="5.0"
-                                                                      GridPane.columnIndex="1"
-                                                                      GridPane.rowIndex="0">
-                                                                    <children>
-                                                                        <Slider fx:id="simplePriceSlider"
-                                                                                blockIncrement="10.0" max="150.0"
-                                                                                prefHeight="30.0" prefWidth="227.0"
-                                                                                showTickLabels="false"
-                                                                                showTickMarks="false"
-                                                                                snapToTicks="false"
-                                                                                HBox.hgrow="ALWAYS"/>
-                                                                        <Label fx:id="simplePriceLabel"
-                                                                               text="Label"/>
-                                                                    </children>
-                                                                </HBox>
-                                                            </children>
-                                                            <columnConstraints>
-                                                                <ColumnConstraints halignment="RIGHT"
-                                                                                   hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
-                                                            </columnConstraints>
-                                                            <rowConstraints>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                valignment="CENTER" vgrow="NEVER"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                valignment="CENTER" vgrow="NEVER"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
-                                                            </rowConstraints>
-                                                        </GridPane>
-                                                    </children>
-                                                </AnchorPane>
-                                            </content>
-                                        </TitledPane>
-                                    </panes>
-                                </Accordion>
+                                <fx:include source="BondInfo.fxml" fx:id="bondInfo"/>
                             </children>
                         </AnchorPane>
                     </items>
                 </SplitPane>
             </children>
         </VBox>
-        <Label id="updateProgresLabel" fx:id="updateProgressLabel" alignment="CENTER" contentDisplay="TOP"
-               text="Label" visible="false">
+        <Label id="updateProgresLabel" fx:id="updateProgressLabel" alignment="CENTER" contentDisplay="TOP" text="Label" visible="false">
             <graphic>
-                <ProgressIndicator id="updateProgresIndicator" fx:id="updateProgressIndicator" progress="-0.02"/>
+                <ProgressIndicator id="updateProgresIndicator" fx:id="updateProgressIndicator" progress="-0.02" />
             </graphic>
         </Label>
     </StackPane>
