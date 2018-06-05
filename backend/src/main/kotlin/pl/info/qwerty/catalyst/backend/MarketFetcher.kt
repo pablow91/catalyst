@@ -5,11 +5,9 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.client.getForObject
 import org.w3c.dom.Document
 import org.w3c.tidy.Tidy
-import pl.info.qwerty.catalyst.model.AdditionalInfo
-import pl.info.qwerty.catalyst.model.Bond
-import pl.info.qwerty.catalyst.model.LastTransaction
-import pl.info.qwerty.catalyst.model.Triple1
+import pl.info.qwerty.catalyst.model.*
 import java.io.ByteArrayInputStream
+import java.time.LocalDate
 
 interface MarketFetcher {
     fun getBonds(market: MarketC): Set<Bond>
@@ -17,7 +15,8 @@ interface MarketFetcher {
 
 @Service
 class MarketFetcherImpl(
-        val marketConfiguration: MarketConfiguration
+        val marketConfiguration: MarketConfiguration,
+        val bondCalculator: BondCalculator
 ) : MarketFetcher {
 
     override fun getBonds(market: MarketC): Set<Bond> {
@@ -81,9 +80,8 @@ class MarketFetcherImpl(
     }
 
     private fun generateBond(attr: List<String>, marketName: String, additionalInfo: AdditionalInfo): Bond {
-//        //TODO: Ustawić liczbę transakcji
-//        dayVolume = pl.info.addInfo.catalyst.backend.changeMinus(li[20]).toInt()
-//        dayValue = pl.info.addInfo.catalyst.backend.changeMinus(li[21]).toDouble()
+        val interestInterval = bondCalculator.calculateInterestInterval(additionalInfo.endDate, additionalInfo.currentInterestRate, additionalInfo.faceValue, additionalInfo.cumulativeInterest)
+        val payoutDays = bondCalculator.calculatePayoutsDays(additionalInfo.interestType, additionalInfo.beginDate, additionalInfo.endDate, interestInterval)
         return Bond(
                 marketName = marketName,
                 issuer = attr[0],
@@ -98,6 +96,10 @@ class MarketFetcherImpl(
                 change = attr[11].changeMinus()?.toDouble(),
                 sellTriple = generateTriple(attr[16].toIntMinus(), attr[17].toIntMinus(), attr[15].changeMinus()?.toDouble()),
                 buyTriple = generateTriple(attr[13].toIntMinus(), attr[12].toIntMinus(), attr[14].changeMinus()?.toDouble()),
+                dayVolume = attr[19].toIntMinus(),
+                dayValue = attr[20].changeMinus()?.toDouble(),
+                interestInterval = interestInterval,
+                payoutDays = payoutDays,
                 additionalInfo = additionalInfo
         )
     }
@@ -148,14 +150,22 @@ class MarketFetcherImpl(
 
     private fun parserAdditionalInfo(finAtt: List<String>): AdditionalInfo {
         return AdditionalInfo(
-                beginDate = finAtt[4],
-                endDate = finAtt[11],
-                interestType = finAtt[6],
+                beginDate = LocalDate.parse(finAtt[4]),
+                endDate = LocalDate.parse(finAtt[11]),
+                interestType = parseBondType(finAtt[6]),
                 issueValue = finAtt[7].changeMinus()?.toDouble() ?: throw Exception(),
                 faceValue = finAtt[8].changeMinus()?.toDouble() ?: throw Exception(),
                 currentInterestRate = finAtt[9].changeMinus()?.toDouble() ?: throw Exception(),
                 cumulativeInterest = finAtt[10].changeMinus()?.toDouble() ?: throw Exception()
         )
+    }
+
+    private fun parseBondType(string: String): BondType = when (string) {
+        "staÅ\u0082e" -> BondType.CONST
+        "zmienne" -> BondType.DIFF
+        "zerokuponowe" -> BondType.SINGLE
+        "indeksowane" -> BondType.INDEXED
+        else -> throw Exception("Unknown bond type $string")
     }
 
     private fun String.toIntMinus(): Int? {

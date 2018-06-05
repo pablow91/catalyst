@@ -32,8 +32,10 @@ repositories {
 dependencies {
     compile(kotlin("stdlib-jdk8", kotlin_version))
     compile(kotlin("reflect", kotlin_version))
-    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4")
-    compile("org.controlsfx:controlsfx:8.40.14")
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.5")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5")
+    compile("org.controlsfx:controlsfx:9.0.0")
     compile("com.squareup.retrofit2:retrofit:2.4.0")
     compile("com.squareup.retrofit2:converter-jackson:2.4.0")
 

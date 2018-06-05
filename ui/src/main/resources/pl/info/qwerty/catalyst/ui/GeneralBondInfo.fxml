@@ -2,16 +2,14 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TitledPane expanded="false" prefHeight="551.0" prefWidth="385.0" text="Ogólne" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.info.qwerty.catalyst.ui.GeneralBondController" fx:id="x1">
+<TitledPane expanded="false" prefHeight="551.0" prefWidth="385.0" text="Ogólne" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.info.qwerty.catalyst.ui.FXMLGeneralBondController" fx:id="x1">
    <content>
       <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
@@ -32,18 +30,18 @@
                         <Tooltip text="Data pierwszego notowania na giełdzie." />
                      </tooltip>
                   </Label>
-                  <Label fx:id="emitentLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <Label fx:id="issuerLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                   <Label fx:id="segmentLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="dataEmisjiLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="beginDateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Data wykupu" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <tooltip>
                         <Tooltip text="Data wykupu obligacji przez emitenta." />
                      </tooltip>
                   </Label>
                   <Label text="Jednostka tranzakcyjna" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                  <Label fx:id="dataWykupuLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="jednostkaTransakcyjnaLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="wartośćNominalnaLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="endDateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="transactionUnitLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="faceValueLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Wartość nominalna" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                      <tooltip>
                         <Tooltip text="Wartość nominalna pojedynczej obligacji." />
@@ -55,50 +53,44 @@
                      </tooltip>
                   </Label>
                   <Label text="Rodzaj oprocentowania" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-                  <Label fx:id="rodzajOprocentowaniaLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label fx:id="wartośćEmisjiLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="interestTypeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label fx:id="issueValueLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="Oprocentowanie bieżące" GridPane.columnIndex="0" GridPane.rowIndex="9">
                      <tooltip>
                         <Tooltip text="Oprocentowanie w aktualnym okresie rozliczeniowym." />
                      </tooltip>
                   </Label>
-                  <Label fx:id="oprocentowanieBieżąceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Label fx:id="currentInterestRateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <Label text="Skumulowane odsetki" GridPane.columnIndex="0" GridPane.rowIndex="10">
                      <tooltip>
                         <Tooltip text="Wartość aktualnego kuponu (ta wartość jest doliczana do ceny jaką płacimy za dany papier)." />
                      </tooltip>
                   </Label>
-                  <Label fx:id="skumulowaneOdsetkiLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label fx:id="cumulativeInterestLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <Label text="Okres odsetkowy" GridPane.columnIndex="0" GridPane.rowIndex="11">
                      <tooltip>
                         <Tooltip text="Okres pomiędzy wypłatami kuponów" />
                      </tooltip>
                   </Label>
-                  <ListView fx:id="datyZapadania" focusTraversable="false" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="13">
+                  <ListView fx:id="collapseDays" focusTraversable="false" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="13">
                      <tooltip>
                         <Tooltip text="Daty w których nabywamy prawo do danego kuponu." />
                      </tooltip>
                   </ListView>
-                  <ListView id="datyZapadania" fx:id="datyWypłaty" focusTraversable="false" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="14">
+                  <ListView id="datyZapadania" fx:id="payoutDays" focusTraversable="false" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="14">
                      <tooltip>
                         <Tooltip text="Daty w których emitent wypłaca kupon dla którego nabyliśmy prawo." />
                      </tooltip>
                   </ListView>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="11" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-                     <children>
-                        <Slider id="okresOdsetkowyLabel" fx:id="okresOdsetkowySlider" max="12.0" min="1.0" showTickLabels="true" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="okresOdsetkowyLabel" text="Label" />
-                        <Label fx:id="okresOdsetkowyAutoLabel" text="Label" />
-                     </children>
-                  </HBox>
+                  <Label fx:id="interestPeriodLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                   <Label text="Wielkość kuponu" GridPane.columnIndex="0" GridPane.rowIndex="12">
                      <tooltip>
                         <Tooltip text="Wartość kuponu przy uwzględnieniu oprocentowania i długości okresu odestkowego." />
                      </tooltip>
                   </Label>
-                  <Label fx:id="wielkośćKuponuLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <Label fx:id="couponValueLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                   <Label text="Market" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                  <Label fx:id="marketNameLabel" text="marketNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="marketNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

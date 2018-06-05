@@ -1,5 +1,7 @@
 package pl.info.qwerty.catalyst.model
 
+import java.time.LocalDate
+
 data class LastTransaction(
         val lastTransaction: String,
         val lastTransactionVolume: Int,
@@ -26,13 +28,17 @@ data class Bond(
         val lastTransaction: LastTransaction?,
         val buyTriple: Triple1?,
         val sellTriple: Triple1?,
+        val dayVolume: Int?,
+        val dayValue: Double?,
+        val interestInterval: Int,
+        val payoutDays: List<LocalDate>,
         val additionalInfo: AdditionalInfo
 )
 
 data class AdditionalInfo(
-        val beginDate: String,
-        val endDate: String,
-        val interestType: String,
+        val beginDate: LocalDate,
+        val endDate: LocalDate,
+        val interestType: BondType,
         val issueValue: Double,
         val faceValue: Double,
         val currentInterestRate: Double,
@@ -43,3 +49,6 @@ data class Market(
         val id: Int,
         val name: String
 )
+enum class BondType{
+    CONST, DIFF, SINGLE, INDEXED
+}

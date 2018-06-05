@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<TitledPane expanded="false" text="Ostatnia sesja" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.info.qwerty.catalyst.ui.FXMLLastSessionController" fx:id="x2">
+   <content>
+      <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <GridPane hgap="10.0" prefHeight="481.0" prefWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="Ostatnia tranzakcja" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <tooltip>
+                        <Tooltip text="Data ostatniej tranzakcji." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="lastTransactionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <Label text="Wolumen ostatniej tranzakcji" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                  <Label fx:id="lastTransactionVolumeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Liczba zleceń kupna" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                     <tooltip>
+                        <Tooltip text="Ile aktualnie jest zleceń od osób które chcą kupić obligacje." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="numberOfOrdersBuyLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Wolumen kupna" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                     <tooltip>
+                        <Tooltip text="Ile aktualnie jest obligacji do sprzedania" />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="buyVolumeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Limit kupna" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                     <tooltip>
+                        <Tooltip text="Najwyższa cena za jaką aktualnie możemy sprzedać obligacje." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="buyPriceLimitLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Liczba zleceń sprzedaży" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                     <tooltip>
+                        <Tooltip text="Ile aktualnie jest zleceń od osób które chcą sprzedać obligacje." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="numberOfOrdersSellLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Wolumen sprzedaży" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                     <tooltip>
+                        <Tooltip text="Ile aktualnie jest obligacji, które możemy kupić." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="sellVolumeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label text="Limit sprzedaży" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                     <tooltip>
+                        <Tooltip text="Najniższa cena za jaką możemy kupić obligacje." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="sellPriceLimitLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label text="Dzisiejszy wolumen" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                     <tooltip>
+                        <Tooltip text="Ilość obligacji, które dzisiaj zmieniły właściciela." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="dayVolumeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label text="Dzisiejsze obroty" GridPane.columnIndex="0" GridPane.rowIndex="9">
+                     <tooltip>
+                        <Tooltip text="Sumaryczna wartość dzisiejszych tranzakcji." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="dayValueLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Label text="Kurs odniesienia" GridPane.columnIndex="0" GridPane.rowIndex="10">
+                     <tooltip>
+                        <Tooltip text="Kurs ostatniego zamnięcia w którym nastąpiła tranzakcja na tym papierze." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="referencePriceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label text="Kurs otwarcia" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+                  <Label fx:id="openingPriceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <Label text="Kurs minimalny" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+                  <Label fx:id="minimalPriceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <Label id="maximalPriceLabel" fx:id="changeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                  <Label text="Zmiana" GridPane.columnIndex="0" GridPane.rowIndex="15" />
+                  <Label text="Kurs ostatni" GridPane.columnIndex="0" GridPane.rowIndex="14">
+                     <tooltip>
+                        <Tooltip text="Kurs ostatniej tranzakcji." />
+                     </tooltip>
+                  </Label>
+                  <Label text="Kurs maksymalny" GridPane.columnIndex="0" GridPane.rowIndex="13">
+                     <tooltip>
+                        <Tooltip text="Maksymalny kurs dzisiejszej sesji." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="lastPriceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <Label fx:id="maximalPriceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </content>
+</TitledPane>

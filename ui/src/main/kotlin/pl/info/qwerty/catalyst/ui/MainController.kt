@@ -1,112 +1,44 @@
 package pl.info.qwerty.catalyst.ui
 
+import javafx.collections.FXCollections
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
-import javafx.scene.control.Label
+import javafx.scene.control.ListCell
 import javafx.scene.control.ListView
-import javafx.scene.control.Slider
-import pl.info.qwerty.catalyst.ui.fxml.bindFXML
+import pl.info.qwerty.catalyst.model.Bond
 import java.net.URL
 import java.util.*
 
+class MainController(
+        bondList: ListView<Bond>,
+        bondProperties: BondProperties
+) {
+    private val bonds = FXCollections.observableArrayList<Bond>()
 
-class GeneralBondController : Initializable {
+    init {
+        val fetchedBonds = BackendService.service.bonds(1).execute().body() ?: throw Exception("Unable to fetch bonds")
+        bonds.addAll(fetchedBonds)
+        bondList.items = bonds
 
-    @FXML private var emitentLabel: Label? = null
-    @FXML private var segmentLabel: Label? = null
-    @FXML private var dataEmisjiLabel: Label? = null
-    @FXML private var dataWykupuLabel: Label? = null
-    @FXML private var jednostkaTransakcyjnaLabel: Label? = null
-    @FXML private var wartośćNominalnaLabel: Label? = null
-    @FXML private var rodzajOprocentowaniaLabel: Label? = null
-    @FXML private var wartośćEmisjiLabel: Label? = null
-    @FXML private var oprocentowanieBieżąceLabel: Label? = null
-    @FXML private var skumulowaneOdsetkiLabel: Label? = null
-    @FXML private var datyZapadania: ListView<*>? = null
-    @FXML private var datyWypłaty: ListView<*>? = null
-    @FXML private var okresOdsetkowySlider: Slider? = null
-    @FXML private var okresOdsetkowyLabel: Label? = null
-    @FXML private var okresOdsetkowyAutoLabel: Label? = null
-    @FXML private var wielkośćKuponuLabel: Label? = null
-    @FXML private var marketNameLabel: Label? = null
+        bondList.setCellFactory {
+            object : ListCell<Bond>() {
+                override fun updateItem(item: Bond?, empty: Boolean) {
+                    super.updateItem(item, empty)
+                    if (item != null) {
+                        text = "${item.name} ${item.segment}"
+                    }
+                }
+            }
+        }
 
-    override fun initialize(location: URL?, resources: ResourceBundle?) {
-        println("Init ${javaClass.name}")
-        println(emitentLabel)
+        bondList.selectionModel.selectedItemProperty().addListener({ arg0, arg1, arg2 ->
+            if (arg2 != null) {
+                bondProperties.use(arg2)
+            } else {
+                bondProperties.clean()
+            }
+        })
     }
-
-}
-
-class BondController : Initializable {
-    override fun initialize(location: URL?, resources: ResourceBundle?) {
-        println("Init!! ${javaClass.name}")
-    }
-
-}
-
-class MainController : Initializable {
-
-//    val mainPanel: VBox by bindFXML()
-//    val minimalProvisionField: TextField by bindFXML()
-//    val percentageProvisionField: TextField by bindFXML()
-//    val refreshMarkets: Button by bindFXML()
-//    val filterEditorButton: ToggleButton by bindFXML()
-//    val bondList: ListView<Bond> by bindFXML()
-//    val bondDetails: Accordion by bindFXML()
-//    val x1: TitledPane by bindFXML()
-//    val emitentLabel: Label by bindFXML()
-//    val segmentLabel: Label by bindFXML()
-//    val dataEmisjiLabel: Label by bindFXML()
-//    val dataWykupuLabel: Label by bindFXML()
-//    val jednostkaTransakcyjnaLabel: Label by bindFXML()
-//    val wartośćNominalnaLabel: Label by bindFXML()
-//    val rodzajOprocentowaniaLabel: Label by bindFXML()
-//    val wartośćEmisjiLabel: Label by bindFXML()
-//    val oprocentowanieBieżąceLabel: Label by bindFXML()
-//    val skumulowaneOdsetkiLabel: Label by bindFXML()
-//    val datyZapadania: ListView<*> by bindFXML()
-//    val datyWypłaty: ListView<*> by bindFXML()
-//    val okresOdsetkowySlider: Slider by bindF)
-//    val okresOdsetkowyLabel: Label by bindF)
-//    val okresOdsetkowyAutoLabel: Label by bindF)
-//    val wielkośćKuponuLabel: Label by bindFXML()
-//    val marketNameLabel: Label by bindFXML()
-//    val x2: TitledPane by bindFXML()
-//    val lastTransactionLabel: Label by bindFXML()
-//    val lastTransactionVolumeLabel: Label by bindFXML()
-//    val numberOfOrdersBuyLabel: Label by bindFXML()
-//    val buyVolumeLabel: Label by bindFXML()
-//    val buyPriceLimitLabel: Label by bindFXML()
-//    val numberOfOrdersSellLabel: Label by bindFXML()
-//    val sellVolumeLabel: Label by bindFXML()
-//    val sellPriceLimitLabel: Label by bindFXML()
-//    val dayVolumeLabel: Label by bindFXML()
-//    val dayValueLabel: Label by bindFXML()
-//    val referencePriceLabel: Label by bindFXML()
-//    val openingPriceLabel: Label by bindFXML()
-//    val minimalPriceLabel: Label by bindFXML()
-//    val changeLabel: Label by bindFXML()
-//    val lastPriceLabel: Label by bindFXML()
-//    val maximalPriceLabel: Label by bindFXML()
-//    val x3: TitledPane by bindFXML()
-//    val dirtyPriceLabel: Label by bindFXML()
-//    val remainingPeriodsLabel: Label by bindFXML()
-//    val numberOfBoundsSlider: Slider by bindFXML()
-//    val numberOfBoundsLabel: Label by bindFXML()
-//    val priceForBondsLabel: Label by bindFXML()
-//    val priceForBondsProvisionLabel: Label by bindFXML()
-//    val finalPriceLabel: Label by bindFXML()
-//    val finalTaxLabel: Label by bindFXML()
-//    val finalPriceTaxLabel: Label by bindFXML()
-//    val finalPercentLabel: Label by bindFXML()
-//    val simplePriceSlider: Slider by bindFXML()
-//    val simplePriceLabel: Label by bindFXML()
-//    val updateProgressLabel: Label by bindFXML()
-//    val updateProgressIndicator: ProgressIndicator by bindFXML()
-
-    override fun initialize(location: URL?, resources: ResourceBundle?) {
-//        val markets = BackendService.service.markets().execute().body()
-        val bonds = BackendService.service.bonds(1).execute().body() ?: throw Exception("Unable to fetch bonds")
 
 //        se.getUpdateMarketsInfo().setOnRunning(t -> {
 //            updateProgressLabel.setVisible(true);
@@ -124,16 +56,7 @@ class MainController : Initializable {
 //        percentageProvisionField.textProperty().bindBidirectional(se.percentageProvisionProperty(), new SimpleDoubleConverter());
 //        setSiteMarket();
 //        bondList.items = FXCollections.observableList(bonds.toMutableList())
-//        bondList.setCellFactory {
-//            object : ListCell<Bond>() {
-//                override fun updateItem(item: Bond?, empty: Boolean) {
-//                    super.updateItem(item, empty)
-//                    if (item != null) {
-//                        text = "${item.name} ${item.segment}"
-//                    }
-//                }
-//            }
-//        }
+
 //        bondList.selectionModel.selectedItemProperty().addListener({ arg0, arg1, arg2 ->
 //            if (arg2 != null) {
 //                if (bondDetails.isDisable) {
@@ -202,13 +125,13 @@ class MainController : Initializable {
 //
 //                referencePriceLabel.text = String.format("%.2f zł", arg2.referencePrice)
 
-        /* TODO */
+    /* TODO */
 //                openingPriceLabel.text = arg2.openingPriceProperty().asString("%.2f zł"))
 //                minimalPriceLabel.textProperty().bind(arg2.minimalPriceProperty().asString("%.2f zł"))
 //                maximalPriceLabel.textProperty().bind(arg2.maximalPriceProperty().asString("%.2f zł"))
 //                lastPriceLabel.textProperty().bind(arg2.lastPriceProperty().asString("%.2f zł"))
 //                changeLabel.textProperty().bind(arg2.changeProperty().asString("%.2f%%"))
-        /* END TODO */
+    /* END TODO */
 
 
 //                arg2.entitledToInterestDaysProperty().addListener((ListChangeListener<LocalDateTime>) change -> datyZapadania.getSelectionModel().select(arg2.getNextEntitledToInterestDay()));
@@ -216,6 +139,21 @@ class MainController : Initializable {
 //            }
 //        })
 //        se.getUpdateMarketsInfo().start();
+}
+
+class FXMLMainController : Initializable {
+
+    @FXML
+    private var bondInfoController: FXMLBondController? = null
+
+    @FXML
+    private var bondList: ListView<Bond>? = null
+
+    override fun initialize(location: URL?, resources: ResourceBundle?) {
+        val bic = bondInfoController ?: throw Exception()
+        val bondProperties = BondProperties()
+        bic.init(bondProperties)
+        MainController(bondList!!, bondProperties)
     }
 
 }
