@@ -58,6 +58,7 @@ class BondCalculatorImpl : BondCalculator {
         if (interestType == BondType.SINGLE) {
             return listOf(endDate)
         }
+        val months = 12 / interestPeriod
         var tmpEnd = endDate
         while (tmpEnd.isAfter(LocalDate.now())) {
             var dd = tmpEnd
@@ -67,7 +68,10 @@ class BondCalculatorImpl : BondCalculator {
                 dd = dd.plusDays(1)
             }
             bondList.add(0, dd)
-            tmpEnd = tmpEnd.minusMonths(interestPeriod.toLong())
+            tmpEnd = tmpEnd.minusMonths(months.toLong())
+        }
+        if (bondList.isEmpty()) {
+            throw Exception()
         }
         return bondList
     }

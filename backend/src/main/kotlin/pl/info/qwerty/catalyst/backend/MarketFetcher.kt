@@ -16,7 +16,8 @@ interface MarketFetcher {
 @Service
 class MarketFetcherImpl(
         val marketConfiguration: MarketConfiguration,
-        val bondCalculator: BondCalculator
+        val bondCalculator: BondCalculator,
+        val bondPeriodService: BondPeriodService
 ) : MarketFetcher {
 
     override fun getBonds(market: MarketC): Set<Bond> {
@@ -55,8 +56,10 @@ class MarketFetcherImpl(
             addMissingInfo(finAtt, lastBond)
             val aim = additionalInfoMap[finAtt[1]] ?: throw Exception()
             val re = generateBond(finAtt, name, aim)
-            set.add(re)
-            lastBond = re
+            if (re != null) {
+                set.add(re)
+                lastBond = re
+            }
         }
         return set
     }
@@ -79,13 +82,14 @@ class MarketFetcherImpl(
         }
     }
 
-    private fun generateBond(attr: List<String>, marketName: String, additionalInfo: AdditionalInfo): Bond {
-        val interestInterval = bondCalculator.calculateInterestInterval(additionalInfo.endDate, additionalInfo.currentInterestRate, additionalInfo.faceValue, additionalInfo.cumulativeInterest)
+    private fun generateBond(attr: List<String>, marketName: String, additionalInfo: AdditionalInfo): Bond? {
+        val name = attr[1]
+        val interestInterval = bondPeriodService.getByName(name) ?: return null
         val payoutDays = bondCalculator.calculatePayoutsDays(additionalInfo.interestType, additionalInfo.beginDate, additionalInfo.endDate, interestInterval)
         return Bond(
                 marketName = marketName,
                 issuer = attr[0],
-                name = attr[1],
+                name = name,
                 segment = attr[2],
                 transactionUnit = attr[3].changeMinus()?.toDouble()?.toInt() ?: throw Exception(),
                 referencePrice = attr[4].changeMinus()?.toDouble(),
@@ -119,7 +123,8 @@ class MarketFetcherImpl(
     }
 
     private fun getAdditionalInfo(): HashMap<String, AdditionalInfo> {
-        val result = RestTemplate().getForObject<String>(marketConfiguration.url + marketConfiguration.addInfo) ?: throw Exception()
+        val result = RestTemplate().getForObject<String>(marketConfiguration.url + marketConfiguration.addInfo)
+                ?: throw Exception()
         val doc = getDocument(result)
         val companyList = doc.getElementsByTagName("table").item(0).childNodes
         val resultSet = HashMap<String, AdditionalInfo>()

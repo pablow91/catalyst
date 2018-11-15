@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql/mysql-server
+    restart: always
+    environment:
+      MYSQL_DATABASE: catalyst
+      MYSQL_USER: catalyst
+      MYSQL_PASSWORD: catalyst123
+    ports:
+      - 3306:3306

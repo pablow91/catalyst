@@ -36,12 +36,7 @@ class BondCalcController(
                 super.bind(priceForBonds)
             }
 
-            override fun computeValue(): Double {
-                val minProv = 3.0
-                val prov = 0.19
-                val p = prov * priceForBonds.get() / 100
-                return priceForBonds.get() + if (p < minProv) minProv else p
-            }
+            override fun computeValue() = priceForBondsProvision(3.0, 0.19, priceForBonds.get())
         }
         val currentPercent = Bindings.multiply(bond.additionalInfo.currentInterestRate, Bindings.divide(bond.interestInterval, 12.00)) as DoubleBinding
         val couponValue = Bindings.multiply(currentPercent, Bindings.divide(bond.additionalInfo.faceValue, 100.0)) as DoubleBinding
@@ -54,16 +49,7 @@ class BondCalcController(
                 super.bind(finalPriceAfterTax, priceForBondsProvision, bond.additionalInfo.endDate, simplePrice)
             }
 
-            override fun computeValue(): Double {
-                return try {
-                    val a = finalPriceAfterTax.get() / priceForBondsProvision.get() - 1
-                    val b = 365.0 / ChronoUnit.DAYS.between(LocalDate.now(), LocalDate.parse(bond.additionalInfo.endDate.get()))
-                    a * b * 100
-                } catch (ex: Exception) {
-                    ex.printStackTrace()
-                    0.0
-                }
-            }
+            override fun computeValue(): Double = finalPercent(finalPriceAfterTax.get(), priceForBondsProvision.get(), LocalDate.parse(bond.additionalInfo.endDate.get()))
         }
         simplePriceSlider.valueProperty().bindBidirectional(simplePrice)
         simplePriceLabel.textProperty().bind(simplePrice.asString("%.2f"))

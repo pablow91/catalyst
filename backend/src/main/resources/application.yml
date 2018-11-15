@@ -14,3 +14,12 @@ market:
     - id: 4
       url: notowania-obligacji-obligacje-skarbowe
       name: Obligacje skarbowe
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/catalyst
+    username: catalyst
+    password: catalyst123
+  jpa:
+    hibernate:
+      ddl-auto: update
+

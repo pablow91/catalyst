@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import pl.info.qwerty.catalyst.model.Bond
 import pl.info.qwerty.catalyst.model.Market
+import javax.annotation.PostConstruct
 
 @Component
 @RestController
@@ -14,6 +15,11 @@ class CatalystRest(
         private val marketConfiguration: MarketConfiguration,
         private val marketFetcher: MarketFetcher
 ) {
+
+    @PostConstruct
+    fun init() {
+        mapper().forEach { bond(it.id) }
+    }
 
     @GetMapping("markets")
     fun mapper(): List<Market> {
@@ -23,6 +29,7 @@ class CatalystRest(
     @GetMapping("bonds/{id}/")
     @Cacheable("id")
     fun bond(@PathVariable("id") id: Int): Set<Bond> {
+        println("Fetching bonds for market with id $id")
         val market = marketConfiguration.items.find { it.id == id } ?: throw Exception()
         return marketFetcher.getBonds(market)
     }

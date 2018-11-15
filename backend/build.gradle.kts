@@ -6,11 +6,11 @@ buildscript {
     var spockVersion: String by extra
     var jtidyVersion: String by extra
     var swaggerVersion: String by extra
-    kotlinVersion = "1.2.41"
-    springBootVersion = "2.0.2.RELEASE"
-    spockVersion = "1.1-groovy-2.4"
+    kotlinVersion = "1.3.10"
+    springBootVersion = "2.1.0.RELEASE"
+    spockVersion = "1.2-groovy-2.5"
     jtidyVersion = "r938"
-    swaggerVersion = "2.7.0"
+    swaggerVersion = "2.9.2"
 
     repositories {
         mavenCentral()
@@ -51,6 +51,7 @@ repositories {
 dependencies {
     // Web
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("javax.xml.bind:jaxb-api")
 
     //API Module
     compile(project(":api"))
@@ -60,8 +61,9 @@ dependencies {
     compile(kotlin("reflect", kotlinVersion))
     compile("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    //MongoDB
-//    compile("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+    //Postgres
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("mysql:mysql-connector-java")
 
     //Scheduling
     compile("org.springframework.boot:spring-boot-starter-quartz")
@@ -83,7 +85,7 @@ dependencies {
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
